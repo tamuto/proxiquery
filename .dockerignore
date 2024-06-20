@@ -1,0 +1,7 @@
+__pycache__
+.env
+.gitignore
+poetry.lock
+poetry.toml
+.venv
+build.sh
