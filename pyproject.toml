@@ -12,6 +12,10 @@ uvicorn = "^0.30.1"
 faiss-cpu = "^1.8.0"
 packaging = "^24.1"
 sentence-transformers = "^3.0.1"
+nltk = "^3.8.1"
+slack-bolt = "^1.19.0"
+mesop = "^0.9.3"
+boto3 = "^1.34.137"
 
 
 [tool.poetry.group.dev.dependencies]
