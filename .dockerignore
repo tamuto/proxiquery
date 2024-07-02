@@ -5,3 +5,4 @@ poetry.lock
 poetry.toml
 .venv
 build.sh
+slack_bot
