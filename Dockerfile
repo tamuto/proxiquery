@@ -1,8 +1,8 @@
 FROM python:3.11-slim-bullseye
 
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu \
-&&  pip install \
+RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
+RUN pip install \
     fastapi \
     uvicorn \
     faiss-cpu \
@@ -13,7 +13,9 @@ RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/c
     scikit-learn \
     nltk \
     sentencepiece \
-&&  pip install --no-deps sentence-transformers
+    Pillow \
+    datasets
+RUN pip install --no-deps sentence-transformers
 
 RUN mkdir /proxiquery \
 &&  mkdir /app

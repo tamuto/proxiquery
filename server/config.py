@@ -15,3 +15,7 @@ def get_dataset():
 
 def get_vector_name():
     return os.getenv('PROXIQUERY_VECTOR_NAME', 'vector')
+
+
+def get_local_files_only():
+    return os.getenv('PROXIQUERY_LOCAL_FILES_ONLY', 'False') == 'True'
