@@ -20,22 +20,29 @@ pip install promptia[openai]
 ## Quick Start
 
 ```python
-from promptia import Promptia, MemoryStorage, OpenAIGPT4oMini
+from promptia import Promptia
+from promptia import PromptTemplate
+from promptia import Message
+from promptia.llm.openai import OpenAIGPT4oMini
 
-# Initialize Promptia
-manager = Promptia(MemoryStorage())
-
-# Add a template
-manager.add_template(
-    name="greeting",
-    content="Hello, {name}! Welcome to {place}.",
-    parameters={"name": "string", "place": "string"}
+template = PromptTemplate(
+    name='greeting',
+    description='greeting template',
+    system="Your name is {{name}}. You have wandered into {{place}}. Please act.",
+    messages=[
+        Message(role='user', content='Who are you?'),
+    ],
+    parameters={
+        'name': 'string',
+        'place': 'string'
+    },
+    function_calling_config=None
 )
+tia = Promptia()
+prompt = tia.build(template, {"name": "Alice", "place": "Wonderland"})
 
-# Build and use a prompt
-prompt = manager.build("greeting", "1.0", {"name": "Alice", "place": "Wonderland"})
-result = OpenAIGPT4oMini.call_llm(prompt)
-
+llm = OpenAIGPT4oMini()
+result = llm.call_llm(prompt)
 print(result)
 ```
 

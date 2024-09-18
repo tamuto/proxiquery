@@ -1,6 +1,7 @@
 """Promptia Core Modules."""
 from .core.manager import Promptia
 from .core.defines import PromptTemplate
+from .core.defines import Message
 from .core.defines import BuiltPrompt
 from .core.defines import FunctionCallingConfig
 from .core.defines import Function
@@ -20,6 +21,7 @@ __version__ = '0.1.0'
 __all__ = [
     'Promptia',
     'PromptTemplate',
+    'Message',
     'BuiltPrompt',
     'FunctionCallingConfig',
     'Function',

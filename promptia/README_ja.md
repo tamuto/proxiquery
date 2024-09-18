@@ -20,22 +20,29 @@ pip install promptia[openai]
 ## クイックスタート
 
 ```python
-from promptia import Promptia, MemoryStorage, OpenAIGPT4oMini
+from promptia import Promptia
+from promptia import PromptTemplate
+from promptia import Message
+from promptia.llm.openai import OpenAIGPT4oMini
 
-# PromptiaManagerの初期化
-manager = Promptia(MemoryStorage())
-
-# テンプレートの追加
-manager.add_template(
-    name="greeting",
-    content="こんにちは、{name}さん！{place}へようこそ。",
-    parameters={"name": "string", "place": "string"}
+template = PromptTemplate(
+    name='greeting',
+    description='greeting template',
+    system="あなたの名前は{{name}}です。あなたは{{place}}に迷い込みました。役を演じてください。",
+    messages=[
+        Message(role='user', content='あなたは誰ですか？'),
+    ],
+    parameters={
+        'name': 'string',
+        'place': 'string'
+    },
+    function_calling_config=None
 )
+tia = Promptia()
+prompt = tia.build(template, {"name": "Alice", "place": "Wonderland"})
 
-# プロンプトの構築と使用
-prompt = manager.build("greeting", "1.0", {"name": "アリス", "place": "不思議の国"})
-result = OpenAIGPT4oMini.call_llm(prompt)
-
+llm = OpenAIGPT4oMini()
+result = llm.call_llm(prompt)
 print(result)
 ```
 
