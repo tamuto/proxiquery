@@ -45,6 +45,7 @@ class Message(BaseModel):
     """メッセージクラス."""
 
     role: str
+    content_type: str = 'text'
     content: str
 
 

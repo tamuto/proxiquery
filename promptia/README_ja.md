@@ -14,16 +14,16 @@ Promptiaは、大規模言語モデル（LLM）用のプロンプト管理と生
 ## インストール
 
 ```
-pip install promptia
+pip install promptia[openai]
 ```
 
 ## クイックスタート
 
 ```python
-from promptia import PromptiaManager, MemoryStorage, ChatGPT4o
+from promptia import Promptia, MemoryStorage, OpenAIGPT4oMini
 
 # PromptiaManagerの初期化
-manager = PromptiaManager(MemoryStorage())
+manager = Promptia(MemoryStorage())
 
 # テンプレートの追加
 manager.add_template(
@@ -34,7 +34,7 @@ manager.add_template(
 
 # プロンプトの構築と使用
 prompt = manager.build("greeting", "1.0", {"name": "アリス", "place": "不思議の国"})
-result = ChatGPT4o.call_llm(prompt)
+result = OpenAIGPT4oMini.call_llm(prompt)
 
 print(result)
 ```

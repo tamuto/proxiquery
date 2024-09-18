@@ -1,7 +1,7 @@
 """AWS Bedrockモジュール."""
 import boto3
 
-from ..llm.adapter import LLMAdapter
+from .adapter import LLMAdapter
 from ..core.defines import BuiltPrompt
 from ..core.defines import ObjectProperty
 from ..core.defines import ArrayProperty
@@ -67,7 +67,7 @@ class BedrockClaude3Haiku(LLMAdapter):
             }
         return config
 
-    def call_llm(self, prompt: BuiltPrompt) -> str:
+    def call_llm(self, prompt: BuiltPrompt) -> tuple[str, int, int]:
         """Bedrockを呼び出す."""
         # FIXME 画像などのデータに対応する必要がある
         data = {
@@ -75,7 +75,7 @@ class BedrockClaude3Haiku(LLMAdapter):
             'messages': [{
                 'role': message.role,
                 'content': [{
-                    'text': message.content
+                    message.content_type: message.content
                 }]
             } for message in prompt.messages],
         }
@@ -87,7 +87,6 @@ class BedrockClaude3Haiku(LLMAdapter):
             data['toolConfig'] = self._build_tool_config(prompt.function_calling_config)
 
         resp = runtime.converse(**data)
-        print(resp)
         if prompt.function_calling_config:
             output = resp['output']['message']['content'][0]['toolUse']['input']
         else:

@@ -14,16 +14,16 @@ Promptia is a Python library designed to streamline the management and generatio
 ## Installation
 
 ```
-pip install promptia
+pip install promptia[openai]
 ```
 
 ## Quick Start
 
 ```python
-from promptia import PromptiaManager, MemoryStorage, ChatGPT4o
+from promptia import Promptia, MemoryStorage, OpenAIGPT4oMini
 
-# Initialize PromptiaManager
-manager = PromptiaManager(MemoryStorage())
+# Initialize Promptia
+manager = Promptia(MemoryStorage())
 
 # Add a template
 manager.add_template(
@@ -34,7 +34,7 @@ manager.add_template(
 
 # Build and use a prompt
 prompt = manager.build("greeting", "1.0", {"name": "Alice", "place": "Wonderland"})
-result = ChatGPT4o.call_llm(prompt)
+result = OpenAIGPT4oMini.call_llm(prompt)
 
 print(result)
 ```

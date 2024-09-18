@@ -1,4 +1,3 @@
-"""AWS Bedorckのテストモジュール."""
 import unittest
 
 from promptia.core.defines import BuiltPrompt
@@ -6,15 +5,14 @@ from promptia.core.defines import Message
 from promptia.core.defines import FunctionCallingConfig
 from promptia.core.defines import Function
 from promptia.core.defines import StringProperty
-from promptia.llm.bedrock import BedrockClaude3Haiku
+from promptia.llm.azure import AzureGPT4oMini
 
 
-@unittest.skip('Bedrockのテストはスキップ')
+@unittest.skip('Azureのテストはスキップ')
 class TestCase(unittest.TestCase):
-    """Bedrockのテストケース."""
 
-    def test_claude3haiku(self):
-        """BedrockClaude3Haikuのテスト."""
+    def test_gpt4o_mini(self):
+        """AzureGPT4oMiniのテスト."""
         prompt = BuiltPrompt(
             system='ユーザからの入力を受け取り、それに対して英語と日本語で返答を生成する。',
             messages=[
@@ -22,13 +20,12 @@ class TestCase(unittest.TestCase):
             ],
             function_calling_config=None
         )
-
-        adapter = BedrockClaude3Haiku()
+        adapter = AzureGPT4oMini()
         result = adapter.call_llm(prompt)
         print(result)
 
-    def test_claude3haiku_with_function(self):
-        """BedrockClaude3Haikuのテスト."""
+    def test_gpt4o_mini_with_function(self):
+        """AzureGPT4oMiniのテスト."""
         prompt = BuiltPrompt(
             system=None,
             messages=[
@@ -49,6 +46,6 @@ class TestCase(unittest.TestCase):
             )
         )
 
-        adapter = BedrockClaude3Haiku()
+        adapter = AzureGPT4oMini()
         result = adapter.call_llm(prompt)
         print(result)

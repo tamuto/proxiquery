@@ -1,5 +1,5 @@
 """Promptia Core Modules."""
-from .core.manager import PromptiaManager
+from .core.manager import Promptia
 from .core.defines import PromptTemplate
 from .core.defines import BuiltPrompt
 from .core.defines import FunctionCallingConfig
@@ -18,7 +18,7 @@ from .storages.s3_storage import S3Storage
 
 __version__ = '0.1.0'
 __all__ = [
-    'PromptiaManager',
+    'Promptia',
     'PromptTemplate',
     'BuiltPrompt',
     'FunctionCallingConfig',

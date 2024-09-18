@@ -1,7 +1,7 @@
 """PromptiaManagerテストモジュール."""
 import unittest
 
-from promptia.core.manager import PromptiaManager
+from promptia.core.manager import Promptia
 from promptia.core.defines import PromptTemplate
 from promptia.storages.memory_storage import MemoryStorage
 
@@ -11,7 +11,7 @@ class TestCase(unittest.TestCase):
 
     def test_build(self):
         """buildメソッドのテスト."""
-        manager = PromptiaManager(MemoryStorage())
+        manager = Promptia(MemoryStorage())
         manager.add_template(
             PromptTemplate(
                 name='test_template',
@@ -27,7 +27,7 @@ class TestCase(unittest.TestCase):
 
     def test_build_with_list(self):
         """パラメータにlistを指定したbuildメソッドのテスト."""
-        manager = PromptiaManager(MemoryStorage())
+        manager = Promptia(MemoryStorage())
         manager.add_template(
             PromptTemplate(
                 name='test_template',

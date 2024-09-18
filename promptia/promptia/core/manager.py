@@ -7,7 +7,7 @@ from ..retrievers.base import Retriever
 from ..storages.base import TemplateStorage
 
 
-class PromptiaManager:
+class Promptia:
     """Promptiaのメインロジックを実装するクラス."""
 
     def __init__(self, storage: TemplateStorage) -> None:
