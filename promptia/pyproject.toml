@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "promptia"
-version = "0.5.0"
+version = "0.5.1"
 description = "Promptia is a Python library designed to streamline the management and generation of prompts for Large Language Models (LLMs)."
 authors = ["tamuto <tamuto@infodb.jp>"]
 readme = "README.md"
@@ -20,9 +20,13 @@ local-index = ["faiss-cpu", "sentence-transformers"]
 aws = ["boto3"]
 openai = ["openai"]
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
 test = "dotenv run python3 -m unittest discover"
+flake8 = "flake8 promptia"

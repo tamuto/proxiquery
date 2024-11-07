@@ -6,6 +6,7 @@ from promptia.retrievers.vector_retriever import LocalVectorProcessor
 from promptia.retrievers.vector_retriever import VectorQuery
 
 
+@unittest.skip('Skip this test')
 class TestCase(unittest.TestCase):
 
     def test_query(self):

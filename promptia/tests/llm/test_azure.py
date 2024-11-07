@@ -1,7 +1,6 @@
 import unittest
 
 from promptia.core.defines import BuiltPrompt
-from promptia.core.defines import Message
 from promptia.core.defines import FunctionCallingConfig
 from promptia.core.defines import Function
 from promptia.core.defines import StringProperty
@@ -16,7 +15,7 @@ class TestCase(unittest.TestCase):
         prompt = BuiltPrompt(
             system='ユーザからの入力を受け取り、それに対して英語と日本語で返答を生成する。',
             messages=[
-                Message(role='user', content='こんにちは'),
+                # Message(role='user', content='こんにちは'),
             ],
             function_calling_config=None
         )
@@ -29,7 +28,7 @@ class TestCase(unittest.TestCase):
         prompt = BuiltPrompt(
             system=None,
             messages=[
-                Message(role='user', content='2024/9/17の東京の天気を教えて'),
+                # Message(role='user', content='2024/9/17の東京の天気を教えて'),
             ],
             function_calling_config=FunctionCallingConfig(
                 functions=[

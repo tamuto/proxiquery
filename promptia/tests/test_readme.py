@@ -3,7 +3,6 @@ import unittest
 
 from promptia import Promptia
 from promptia import PromptTemplate
-from promptia import Message
 from promptia.llm.openai import OpenAIGPT4oMini
 
 
@@ -18,7 +17,7 @@ class TestCase(unittest.TestCase):
             description='greeting template',
             system="あなたの名前は{{name}}です。あなたは{{place}}に迷い込みました。役を演じてください。",
             messages=[
-                Message(role='user', content='あなたは誰ですか？'),
+                {'role': 'user', 'content': 'あなたは誰ですか？'},
             ],
             parameters={
                 'name': 'string',
@@ -40,7 +39,7 @@ class TestCase(unittest.TestCase):
             description='greeting template',
             system="Your name is {{name}}. You have wandered into {{place}}. Please act.",
             messages=[
-                Message(role='user', content='Who are you?'),
+                {'role': 'user', 'content': 'Who are you?'},
             ],
             parameters={
                 'name': 'string',

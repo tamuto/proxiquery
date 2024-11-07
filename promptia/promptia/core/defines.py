@@ -56,7 +56,7 @@ class PromptTemplate(BaseModel):
 class BuiltPrompt:
     """適用済みプロンプトクラス."""
 
-    def __init__(self, system: str | None, messages: list[Message], function_calling_config: FunctionCallingConfig | None) -> None:
+    def __init__(self, system: str | None, messages: list, function_calling_config: FunctionCallingConfig | None) -> None:
         """コンストラクタ."""
         self.system = system
         self.messages = messages
