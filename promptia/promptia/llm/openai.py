@@ -18,16 +18,6 @@ class OpenAIGPT4oMini(LLMAdapter):
         # FIXME その他パラメータをどのように設定するか？
         pass
 
-    def _build_message(self, message) -> dict:
-        """メッセージを構築する."""
-        if message.content_type == 'text':
-            return message.content
-
-        return {
-            'type': message.content_type,
-            message.content_type: message.content
-        }
-
     def _build_properties(self, properties) -> dict:
         """プロパティを構築する."""
         props = {}
@@ -73,10 +63,7 @@ class OpenAIGPT4oMini(LLMAdapter):
         else:
             data['messages'] = []
 
-        data['messages'].extend([{
-                'role': message.role,
-                'content': self._build_message(message)
-            } for message in prompt.messages])
+        data['messages'].extend(prompt.messages)
 
         if prompt.function_calling_config:
             data['tools'] = [{

@@ -41,21 +41,13 @@ class FunctionCallingConfig(BaseModel):
     function_call: str | None = None
 
 
-class Message(BaseModel):
-    """メッセージクラス."""
-
-    role: str
-    content_type: str = 'text'
-    content: str
-
-
 class PromptTemplate(BaseModel):
     """プロンプトテンプレートクラス."""
 
     name: str
     description: str
     system: str | None = None
-    messages: list[Message]
+    messages: list
     parameters: dict[str, str]
     function_calling_config: FunctionCallingConfig | None = None
     version: str = '1.0'
