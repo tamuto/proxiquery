@@ -17,7 +17,7 @@ class LLMAdapter:
         raise NotImplementedError()
 
     @abstractmethod
-    def invoke_llm(self, prompt: BuiltPrompt, stream=False) -> str:
+    def invoke_llm(self, prompt: BuiltPrompt, stream=False):
         """
         LLMを呼び出す.
 

@@ -101,7 +101,7 @@ class OpenAIGPT4oMini(LLMAdapter):
 
         return output, input_token, output_tokens
 
-    def invoke_llm(self, prompt: BuiltPrompt, stream=False) -> str:
+    def invoke_llm(self, prompt: BuiltPrompt, stream=False):
         data = self.build_prompt(prompt)
         if stream:
             data['stream'] = True
