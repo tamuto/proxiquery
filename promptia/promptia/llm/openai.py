@@ -61,9 +61,7 @@ class OpenAIGPT4oMini(LLMAdapter):
             }
         }
 
-    def call_llm(self, prompt: BuiltPrompt) -> tuple[str, int, int]:
-        """LLMを呼び出す."""
-
+    def build_prompt(self, prompt: BuiltPrompt) -> dict:
         data = {
             'model': 'gpt-4o-mini',
         }
@@ -87,7 +85,11 @@ class OpenAIGPT4oMini(LLMAdapter):
             } for func in prompt.function_calling_config.functions]
             if prompt.function_calling_config.function_call:
                 data['tool_choice'] = 'required'
+        return data
 
+    def call_llm(self, prompt: BuiltPrompt) -> tuple[str, int, int]:
+        """LLMを呼び出す."""
+        data = self.build_prompt(prompt)
         result = client.chat.completions.create(**data)
 
         if prompt.function_calling_config:
@@ -98,3 +100,9 @@ class OpenAIGPT4oMini(LLMAdapter):
         output_tokens = result.usage.completion_tokens
 
         return output, input_token, output_tokens
+
+    def invoke_llm(self, prompt: BuiltPrompt, stream=False) -> str:
+        data = self.build_prompt(prompt)
+        if stream:
+            data['stream'] = True
+        return client.chat.completions.create(**data)

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "promptia"
-version = "0.3.0"
+version = "0.4.0"
 description = "Promptia is a Python library designed to streamline the management and generation of prompts for Large Language Models (LLMs)."
 authors = ["tamuto <tamuto@infodb.jp>"]
 readme = "README.md"
